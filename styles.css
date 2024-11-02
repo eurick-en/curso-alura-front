@@ -7,18 +7,22 @@
     --botao-azul-efeito: #3c92fa;
 }
 
-body {
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
     background-color: var(--cor-de-fundo);
     color: var(--branco-principal);
     font-family: var(--fonte-principal);
     font-size: 16px;
     font-weight: 400;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 .principal {
@@ -30,10 +34,11 @@ body {
 }
 
 .container {
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
+    padding: 0 2em;
 }
 
 .container__botao {
@@ -41,11 +46,12 @@ body {
     border-radius: 5px;
     padding: 1em;
     color: var(--branco-principal);
-    display: block;
     text-decoration: none;
+    text-align: center;
+    display: inline-block;
     margin-bottom: 1em;
     font-size: 16px;
-    text-align: center;
+    transition: background-color 0.3s;
 }
 
 .botao_secundario {
@@ -65,40 +71,44 @@ body {
 
 .container__imagem {
     margin: 1em 0 2em 0;
-    width: 80%;
+    max-width: 100%;
 }
 
 .container__caixa {
-    margin: 0 6em;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .secundario {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 5em 0; /* Espacamento vertical */
+    margin: 5em 0;
 }
 
 .secundario__imagem {
-    width: 50%; /* Ajusta a imagem para metade da largura */
-    max-width: 400px; /* Limita a largura máxima */
+    width: 80%;
+    max-width: 300px;
+    margin: 1em;
 }
 
 .container__descricao {
-    padding: 2em;
-    max-width: 50%; /* Ajusta a largura da descrição */
+    padding: 1em;
+    max-width: 400px;
+    text-align: center;
 }
 
 .descricao__titulo {
     font-weight: 700;
-    font-size: 48px;
-    color: var(--branco-principal);
+    font-size: 36px;
     margin-bottom: 0.1em;
 }
 
 .descricao__texto {
     color: var(--cinza-secundario);
+    font-size: 16px;
 }
 
 .secundario__botao {
@@ -106,60 +116,60 @@ body {
     margin-top: 1em;
 }
 
-.dispositivos__lista {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
+.dispositivos {
+    text-align: center;
     margin: 5em 0;
 }
 
-.dispositivos {
-    text-align: center;
-}
-
 .dispositivos__titulo {
-    font-size: 48px;
-    color: var(--branco-principal);
-}
-
-.lista__item {
     font-size: 32px;
     color: var(--branco-principal);
 }
 
+.dispositivos__lista {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-top: 2em;
+    gap: 2em;
+    padding: 0;
+}
+
+.lista__item {
+    font-size: 24px;
+    color: var(--branco-principal);
+}
+
 .rodape {
+    background-color: #111;
+    padding: 1.5em 1em; /* Ajuste de padding para um footer mais compacto */
     text-align: center;
-    margin: 5em 3em;
 }
 
 .rodape__lista {
     display: flex;
     justify-content: center;
     list-style-type: none;
-    margin-top: 1em;
-}
-
-.lista__link {
-    margin: 0 1em; /* Espaçamento entre os links */
+    gap: 1em; /* Redução de espaço entre links */
+    flex-wrap: wrap;
 }
 
 .lista__link a {
     text-decoration: none;
     color: var(--branco-principal);
+    font-size: 13px; /* Tamanho de fonte reduzido */
+    transition: color 0.3s;
 }
 
 .rodape__texto {
-    margin: 1em 0;
+    margin-top: 0.5em; /* Redução de espaço entre parágrafos */
     color: var(--cinza-secundario);
-    font-size: 14px;
+    font-size: 12px; /* Tamanho de fonte reduzido */
+    line-height: 1.4; /* Espaçamento de linha ajustado */
 }
 
 .lista__link a:hover {
     color: var(--botao-azul);
-}
-
-.lista__link a:active {
-    color: purple;
 }
 
 .container__botao:hover {
@@ -171,49 +181,36 @@ body {
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
-        padding: 2em;
-    }
-
-    .container__caixa {
-        margin: 0;
+        padding: 1em;
     }
 
     .container__titulo {
         font-size: 24px;
     }
 
-    .container__imagem,
-    .secundario__imagem {
-        width: 100%;
-    }
-
     .descricao__titulo {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .dispositivos__titulo {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .lista__item {
-        font-size: 24px;
+        font-size: 20px;
     }
 
-    .rodape {
-        margin: 3em 1em;
-    }
-
-    .dispositivos__lista {
+    .rodape__lista {
         flex-direction: column;
     }
 
-    .container__botao {
-        font-size: 14px;
+    .secundario {
+        flex-direction: column;
     }
 
-    .secundario {
-        flex-direction: column; /* Imagem e descrição em coluna */
-        align-items: center; /* Centraliza os itens */
+    .container__caixa {
+        margin: 0 auto;
+        padding: 1em;
     }
 }
 
@@ -234,10 +231,10 @@ body {
         font-size: 18px;
     }
 
-    .rodape {
-        margin: 2em 0.5em;
+    .rodape__lista {
+        gap: 1em;
     }
-
+    
     .container__botao {
         padding: 0.8em;
         font-size: 14px;
